@@ -20,6 +20,7 @@ const App = () => {
 				setIsAuthenticated(true);
 				setUser(res.data.data);
 				setIsLoading(false);
+				axios.post("/auth/status", { isOnline: true });
 			})
 			.catch(e => {
 				setIsAuthenticated(false);
@@ -27,6 +28,16 @@ const App = () => {
 				setIsLoading(false);
 			});
 	}, [isAuthenticated]);
+
+	useEffect(() => {
+		const cleanup = () => {
+			axios.post("/auth/status", { isOnline: false });
+		};
+		window.addEventListener("beforeunload", cleanup);
+		return () => {
+			window.removeEventListener("beforeunload", cleanup);
+		};
+	}, []);
 
 	let routes;
 	if (isAuthenticated) {

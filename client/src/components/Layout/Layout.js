@@ -9,9 +9,11 @@ import { AuthContext } from "../../shared/AuthContext";
 const Layout = props => {
 	const { setUser, setIsAuthenticated } = useContext(AuthContext);
 	const onLogOut = () => {
-		axios.get("auth/logout").then(res => {
-			setIsAuthenticated(false);
-			setUser({});
+		axios.post("/auth/status", { isOnline: false }).then(res => {
+			axios.get("auth/logout").then(res => {
+				setIsAuthenticated(false);
+				setUser({});
+			});
 		});
 	};
 
@@ -50,7 +52,7 @@ const Layout = props => {
 					<div className={classes.Logout}>
 						<div>
 							<Button onClick={onLogOut} outlined color={pinkDark} width="6rem">
-								Log out 
+								Log out
 							</Button>
 						</div>
 					</div>

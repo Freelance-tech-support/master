@@ -17,7 +17,11 @@ const QuestionSchema = new mongoose.Schema({
    completed: {
       type: Boolean,
       default: false
-   }
+   },
+   createdAt: {
+		type: Number,
+		default: Date.now,
+	},
 });
 
 module.exports = mongoose.model("Question", QuestionSchema);

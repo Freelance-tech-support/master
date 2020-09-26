@@ -13,9 +13,13 @@
 	--pink-dark: #D8315B;
 }
 
+html {
+	overflow-y: scroll;
+}
 
 html, body {
 	font-size: 62.5%;
+
 }
 
 body {
@@ -43,6 +47,7 @@ a {
 a:hover, a:focus {
 	text-decoration: underline;
 }
+
 
 .center {
 	height: 100vh;
