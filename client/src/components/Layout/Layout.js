@@ -50,7 +50,7 @@ const Layout = props => {
 					<div className={classes.Logout}>
 						<div>
 							<Button onClick={onLogOut} outlined color={pinkDark} width="6rem">
-								Log out
+								Log out 
 							</Button>
 						</div>
 					</div>

@@ -10,7 +10,7 @@
 	background-color: transparent;
 	font-weight: 400;
 	letter-spacing: 0.05ch;
-	font-size: 1.6rem;
+	font-size: inherit;
 	font-family: inherit;
 	text-transform: uppercase;
 	outline: none;
