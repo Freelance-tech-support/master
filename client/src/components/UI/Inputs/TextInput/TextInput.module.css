@@ -10,7 +10,7 @@
    border: none;
    padding-top: 3rem;
    padding-bottom: .75rem;
-   color: var(--text-secondary);
+   color: var(--text-primary);
    border: none;
    font-family: 'Nunito', sans-serif;
    font-size: 1.6rem;
@@ -25,7 +25,7 @@
    height: 100%;
    width: 100%;
    pointer-events: none;
-   border-bottom: 1.5px solid var(--text-primary);
+   border-bottom: 1.5px solid var(--text-secondary);
 }
 
 .Label:after {
@@ -35,7 +35,7 @@
    bottom: -1.5px;
    height: 100%;
    width: 100%;
-   border-bottom: 3px solid var(--blue-dark);
+   border-bottom: 3px solid var(--blue-light);
    transform: translateX(-100%);
    transition: transform var(--transition-speed) ease;
 }
@@ -45,14 +45,14 @@
 }
 
 .LabelText {
-   color: var(--text-primary);
+   color: var(--text-secondary);
    text-transform: uppercase;
    font-size: 1.4rem;
 }
 
 .Input svg {
    position: absolute;
-   fill: var(--text-primary);
+   fill: var(--text-secondary);
    left: 0;
    bottom: 17%;
    pointer-events: none;
@@ -60,7 +60,7 @@
 }
 
 .Input input:focus + svg {
-   fill: var(--blue-dark);
+   fill: var(--blue-light);
 }
 
 .Input input:focus {

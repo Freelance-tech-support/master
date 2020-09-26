@@ -1,0 +1,45 @@
+
+:root {
+	--text-primary: rgba(0, 0, 0, 0.87);
+	--text-secondary: rgba(0, 0, 0, 0.54);
+	--bg-primary: #fff;
+	--bg-secondary: #fafafa;
+	--transition-speed: .4s;
+
+	--blue-dark: #0A2463;
+	--blue-light: #3E92CC;
+
+	--pink-light: #ff7eee;
+	--pink-dark: #D8315B;
+}
+
+
+html, body {
+	font-size: 62.5%;
+}
+
+body {
+	position: relative;
+	font-size: 1.6rem;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	color: var(--text-primary);
+	background-color: var(--bg-secondary);
+}
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+a {
+	text-decoration: none;
+	color: var(--blue-light);
+}
+
+a:hover, a:focus {
+	text-decoration: underline;
+}
