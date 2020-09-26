@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import Login from "./components/Auth/Login/Login";
 import Register from "./components/Auth/Register/Register";
-import Home from './components/Home/Home'
+import Home from "./components/Home/Home";
+import HomeLayout from "./components/Layout/Layout";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { AuthContext } from "./shared/AuthContext";
 import Loader from "./components/UI/Loader/Loader";
@@ -18,22 +19,24 @@ const App = () => {
 			.then(res => {
 				setIsAuthenticated(true);
 				setUser(res.data.data);
-				setIsLoading(false)
+				setIsLoading(false);
 			})
 			.catch(e => {
 				setIsAuthenticated(false);
 				setUser({});
-				setIsLoading(false)
+				setIsLoading(false);
 			});
 	}, [isAuthenticated]);
 
 	let routes;
 	if (isAuthenticated) {
 		routes = (
-			<Switch>
-				<Route path="/home" component={Home} />
-				<Redirect to="/home" />
-			</Switch>
+			<HomeLayout>
+				<Switch>
+					<Route path="/home" component={Home} />
+					<Route path="/home" component={Home} />
+				</Switch>
+			</HomeLayout>
 		);
 	} else {
 		routes = (
