@@ -33,10 +33,6 @@ const Login = props => {
 							errorMessage={usernameError}
 							register={register({
 								required: "This field is required",
-								pattern: {
-									value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-									required: "This field is required",
-								},
 							})}
 						/>
 						<TextInput
