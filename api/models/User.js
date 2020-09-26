@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
 		minlength: 8,
 		required: [true, "Password is required"],
 		select: false,
+	},
+	isOnline: {
+		type: Boolean,
+		default: false
 	}
 });
 

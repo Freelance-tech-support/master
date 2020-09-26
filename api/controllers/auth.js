@@ -29,7 +29,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 			return next(new ErrorResponse(err, 404));
 		}
 
-		req.logIn(user, err => {
+		req.logIn(user, async err => {
 			res.status(200).json({ success: true, data: user });
 		});
 	})(req, res, next);
@@ -49,4 +49,3 @@ exports.logout = asyncHandler((req, res, next) => {
 	req.logout();
 	res.status(200).json({ success: true, data: {} });
 });
-
