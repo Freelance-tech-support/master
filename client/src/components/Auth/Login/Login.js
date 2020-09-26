@@ -16,12 +16,12 @@ const Login = props => {
 
 	const onSubmit = () => {};
 
-	const buttonColor = getComputedStyle(document.documentElement).getPropertyValue("--blue-dark");
+	const blueDark = getComputedStyle(document.documentElement).getPropertyValue("--blue-dark");
 	const usernameError = errors.username ? errors.username.message : null;
 	const passwordError = errors.password ? errors.password.message : null;
 
 	return (
-		<div className={classes.Center}>
+		<div className='center'>
 			<div className={classes.LoginContainer}>
 				<Paper>
 					<form onSubmit={handleSubmit(onSubmit)} className={classes.LoginForm}>
@@ -47,7 +47,7 @@ const Login = props => {
 							})}
 						/>
 						<div className={classes.ButtonContainer}>
-							<Button color={buttonColor}>Login</Button>
+							<Button color={blueDark}>Login</Button>
 						</div>
 					</form>
 					<div className={classes.RegisterLink}>

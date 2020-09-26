@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/icons/LockIcon";
@@ -7,22 +7,48 @@ import classes from "./Register.module.css";
 import TextInput from "../../UI/Inputs/TextInput/TextInput";
 import Button from "../../UI/Button/Button";
 import Paper from "../../UI/Paper/Paper";
+import axios from '../../../shared/axios-api'
+import {AuthContext} from "../../../shared/AuthContext"
 
 const Register = props => {
+	const { setIsAuthenticated, setUser } = useContext(AuthContext);
+
 	const { register, errors, handleSubmit, setError, watch } = useForm({
 		reValidateMode: "onSubmit",
 		shouldFocusError: true,
 	});
 
-	const onSubmit = () => {};
+	const onSubmit = data => {
+		axios
+			.post("auth/register", data)
+			.then(res => {
+				axios
+					.post("auth/login", data)
+					.then(res => {
+						setIsAuthenticated(true);
+						setUser(res.data.data);
+					})
+					.catch(err => {
+						props.history.push("/login");
+					});
+			})
+			.catch(err => {
+				const username = document.getElementById("username");
+				username.focus();
+				setError("username", {
+					type: "manual",
+					message: err.response.data.error,
+				});
+			});
+	};
 
-	const buttonColor = getComputedStyle(document.documentElement).getPropertyValue("--blue-dark");
+	const blueDark = getComputedStyle(document.documentElement).getPropertyValue("--blue-dark");
 	const usernameError = errors.username ? errors.username.message : null;
 	const passwordError = errors.password ? errors.password.message : null;
 	const confirmPasswordError = errors.confirmpassword ? errors.confirmpassword.message : null;
 
 	return (
-		<div className={classes.Center}>
+		<div className='center'>
 			<div className={classes.RegisterContainer}>
 				<Paper>
 					<form onSubmit={handleSubmit(onSubmit)} className={classes.RegisterForm}>
@@ -34,9 +60,9 @@ const Register = props => {
 							errorMessage={usernameError}
 							register={register({
 								required: "This field is required",
-                        minLength: {
-									value: "8",
-									message: "Must be atleast 8 characters",
+								minLength: {
+									value: "6",
+									message: "Must be atleast 6 characters",
 								},
 							})}
 						/>
@@ -68,7 +94,7 @@ const Register = props => {
 							})}
 						/>
 						<div className={classes.ButtonContainer}>
-							<Button color={buttonColor}>Register</Button>
+							<Button color={blueDark}>Register</Button>
 						</div>
 					</form>
 					<div className={classes.LoginLink}>

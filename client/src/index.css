@@ -43,3 +43,11 @@ a {
 a:hover, a:focus {
 	text-decoration: underline;
 }
+
+.center {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+}
