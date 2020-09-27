@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const path = require('path')
 const cors = require("cors");
 const socket = require("socket.io");
 const errorHandler = require("./middleware/errorHandler");
