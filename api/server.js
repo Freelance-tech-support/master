@@ -83,3 +83,8 @@ process.on("unhandledRejection", (err, promise) => {
 	// Close server & exit process
 	// server.close(() => process.exit(1));
 });
+
+var mongoClient = require("mongodb").MongoClient;
+mongoClient.connect("mongodb://deploy-tech:7BUb0kLWn5OwhK9l2GGromsdzzHovmSf4DlCvYlZxFRYydXumkTaP4bjMPaRyGjXVI8AQGiZBf7D63ySwNQXyQ%3D%3D@deploy-tech.documents.azure.com:10255/?ssl=true", function (err, client) {
+  client.close();
+});

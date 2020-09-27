@@ -37,7 +37,7 @@ const Register = props => {
 				username.focus();
 				setError("username", {
 					type: "manual",
-					message: err.response.data.error,
+					message: err.toString(),
 				});
 			});
 	};
