@@ -1,4 +1,6 @@
+required('dotenv').config();
 const express = require("express");
+const bodyParser = require('bodyParser')
 const http = require("http");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
@@ -26,18 +28,30 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
+const.use(bodyParser.json())
+const.use(bodyParser.urlencoded(extended:false))
+
+const {PORT} = process.env;
+app.listen(PORT, () => console.log('Wizardry happening on porn ${PORT}'))
 
 //Middleware
 app.use(express.json());
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
-app.use(
+/* app.use(
 	cors({
 		origin: "http://localhost:3000",
 		credentials: true,
 	})
+); */
+app.use(
+	cors({
+		origin: "https://fir-95d5e.firebaseapp.com:3000",
+		credentials: true,
+	})
 );
+
 
 //Authentication
 app.use(
@@ -84,7 +98,15 @@ process.on("unhandledRejection", (err, promise) => {
 	// server.close(() => process.exit(1));
 });
 
+
+// MongoDB and Azure CosmoDB
 var mongoClient = require("mongodb").MongoClient;
 mongoClient.connect("mongodb://deploy-tech:7BUb0kLWn5OwhK9l2GGromsdzzHovmSf4DlCvYlZxFRYydXumkTaP4bjMPaRyGjXVI8AQGiZBf7D63ySwNQXyQ%3D%3D@deploy-tech.documents.azure.com:10255/?ssl=true", function (err, client) {
   client.close();
 });
+
+// Testing connection....
+
+ app.listen(PORT, () => {
+	console.log(`Node Express server listening on https://fir-95d5e.firebaseapp.com:${PORT}`);
+ });
