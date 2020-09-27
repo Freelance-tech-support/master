@@ -86,7 +86,7 @@ require("./config/passport")(passport);
 
 //Security
 app.use(mongoSanitize());
-app.use(helmet());
+app.use(helmet({contentSecurityPolicy: false}));
 app.use(xss());
 app.use(hpp());
 
