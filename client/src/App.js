@@ -188,7 +188,6 @@ const App = () => {
 	} else {
 		routes = (
 			<div>
-				<button onClick={onclick}>login</button>
 				<Switch>
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
