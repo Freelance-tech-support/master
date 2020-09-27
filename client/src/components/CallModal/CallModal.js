@@ -18,7 +18,7 @@ const CallModal = props => {
 					<div className={classes.Padding}></div>
 					<div style={{fontSize: '2.4rem', textAlign: 'center'}}>
 						{props.callerName}
-						{props.children}
+						<Video />
 					</div>
 				</div>
 

@@ -173,7 +173,6 @@ const App = () => {
 					username={user.username}
 					callerName={callerName}
 				>
-					{PartnerVideo}
 				</CallModal>
 				<RequestModal
 					show={receivingCall}
