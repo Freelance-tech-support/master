@@ -92,6 +92,9 @@ app.use(hpp());
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/question", question);
 app.use("/api/v1/users", userR);
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, '/client/build/index.html'));
+ });
 
 const PORT = process.env.PORT || 8080;
 
