@@ -173,7 +173,7 @@ const App = () => {
 				/>
 				<Switch>
 					<Route
-						path="/bounties"
+						path="/"
 						render={() => <Home users={users} call={id => callPeer(id)} />}
 					/>
 					<Route path="/hire" />
@@ -190,7 +190,7 @@ const App = () => {
 			<div>
 				<button onClick={onclick}>login</button>
 				<Switch>
-					<Route path="/login" component={Login} />
+					<Route path="/" component={Login} />
 					<Route path="/register" component={Register} />
 					<Redirect to="/register" />
 				</Switch>

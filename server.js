@@ -2,7 +2,7 @@ const express = require("express");
 const http = require("http");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const path = require('path')
+const path = require("path");
 const cors = require("cors");
 const socket = require("socket.io");
 const errorHandler = require("./middleware/errorHandler");
@@ -29,6 +29,7 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
+const PORT = process.env.PORT || 8080;
 
 //Socket.io
 const io = socket(server);
@@ -93,16 +94,17 @@ app.use(hpp());
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/question", question);
 app.use("/api/v1/users", userR);
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '/client/build/index.html'));
- });
 
-const PORT = process.env.PORT || 8080;
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.resolve(__dirname, "client/build")));
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+	});
+}
 
-app.use(express.urlencoded({extended: false}))
 
-app.use(express.static('client/build'))
 
+app.use(express.urlencoded({ extended: false }));
 
 server.listen(
 	PORT,
