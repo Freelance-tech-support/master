@@ -39,11 +39,10 @@ const App = () => {
 				setUser(res.data.data);
 
 				//////////////////////////////////
-				if (!socket.current) {
-					socket.current = io.connect("https://spacebounties.herokuapp.com/");
-					const username = res.data.data.username;
-					socket.current.emit("username", username);
-				}
+
+				socket.current = io.connect("https://spacebounties.herokuapp.com/");
+				const username = res.data.data.username;
+				socket.current.emit("username", username);
 
 				socket.current.on("allUsers", data => {
 					setUsers(data);
