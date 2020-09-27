@@ -1,0 +1,12 @@
+.Buttons {
+   display: flex;
+   margin-top: 2rem;
+}
+
+.Modal {
+   width: 45rem;
+}
+
+.Label {
+   text-align: center;
+}

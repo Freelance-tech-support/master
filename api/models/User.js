@@ -17,7 +17,15 @@ const UserSchema = new mongoose.Schema({
 	isOnline: {
 		type: Boolean,
 		default: false
-	}
+	},
+	socketId: {
+		type: String,
+		default: ''
+	},
+	totalBounties: {
+		type: Number,
+		default: 0
+	},
 });
 
 //Hash password

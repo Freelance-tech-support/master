@@ -4,7 +4,7 @@
 }
 
 .QuestionList {
-   
+
 }
 
 .CircularButton {
@@ -12,6 +12,7 @@
    flex-direction: column;
    justify-content: center;
    height: 4rem;
+   cursor: pointer;
    width: 4rem;
    background-color: var(--pink-dark);
    border-radius: 100%;

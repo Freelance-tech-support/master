@@ -1,0 +1,15 @@
+.Video {
+	border: 1px solid blue;
+	width: 100rem;
+	height: 40rem;
+}
+
+.Container {
+   width: 100vw;
+   height: 100vh;
+}
+
+.Row {
+   display: flex;
+   width: 100%;
+}

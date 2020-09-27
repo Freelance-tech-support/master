@@ -3,6 +3,7 @@ const http = require("http");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
+const socket = require("socket.io");
 const errorHandler = require("./middleware/errorHandler");
 const connectDB = require("./config/db");
 
@@ -17,7 +18,8 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 
 const auth = require("./routes/auth");
-const question = require('./routes/question')
+const question = require("./routes/question");
+const userR = require("./routes/users");
 
 //Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -27,6 +29,37 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
+
+//Socket.io
+const io = socket(server);
+const users = {};
+
+io.on("connection", socket => {
+	console.log("connection " + socket.id);
+
+	socket.on("username", data => {
+		users[data] = socket.id;
+		socket.username = data;
+		io.sockets.emit("allUsers", users);
+	});
+
+	socket.on("disconnect", () => {
+		console.log(`${socket.username} disconnecting`);
+		delete users[socket.username];
+	});
+
+	socket.on("callUser", data => {
+		io.to(data.userToCall).emit("hey", {
+			signal: data.signalData,
+			from: data.from,
+			fromName: data.fromName,
+		});
+	});
+
+	socket.on("acceptCall", data => {
+		io.to(data.to).emit("callAccepted", data.signal);
+	});
+});
 
 //Middleware
 app.use(express.json());
@@ -59,16 +92,12 @@ require("./config/passport")(passport);
 app.use(mongoSanitize());
 app.use(helmet());
 app.use(xss());
-const limiter = rateLimit({
-	windowMs: 10 * 60 * 1000,
-	max: 1000,
-});
-app.use(limiter);
 app.use(hpp());
 
 //Mount routes
 app.use("/api/v1/auth", auth);
-app.use("/api/v1/question", question)
+app.use("/api/v1/question", question);
+app.use("/api/v1/users", userR);
 
 const PORT = process.env.PORT || 5000;
 

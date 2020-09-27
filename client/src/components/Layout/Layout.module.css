@@ -12,6 +12,7 @@
 
 .Nav {
 	position: fixed;
+	z-index: 2000;
 	background-color: var(--blue-dark);
 	color: var(--bg-secondary);
 	height: 7.9rem;

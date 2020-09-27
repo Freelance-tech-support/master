@@ -1,5 +1,4 @@
 const Question = require("../models/Question");
-const User = require("../models/User")
 const asyncHandler = require("../middleware/async");
 
 // @desc      Get all questions

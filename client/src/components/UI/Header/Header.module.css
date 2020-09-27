@@ -1,0 +1,6 @@
+.Header {
+   font-size: 4.5rem;
+   color: var(--text-primary);
+   font-weight: 300;
+   margin-left: -7rem
+}

@@ -7,7 +7,9 @@ import en from "javascript-time-ago/locale/en";
 import PlusIcon from "../../assets/icons/PlusIcon";
 import Modal from "../UI/Modal/Modal";
 import PostForm from "./PostForm/PostForm";
+import Video from "../Video/Video";
 import { AuthContext } from "../../shared/AuthContext";
+import Header from "../UI/Header/Header";
 
 const Home = props => {
 	const [showModal, setShowModal] = useState(false);
@@ -24,13 +26,15 @@ const Home = props => {
 			setQuestions(unanswered);
 		});
 	};
-
+	console.log(props.users)
 	TimeAgo.addLocale(en);
 	const timeAgo = new TimeAgo();
 	const questionsList = questions.map(question => {
 		return (
 			<Question
 				user={question.user.username}
+				call={(id) => props.call(id)}
+				socketId={props.users && props.users[question.user.username]}
 				own={question.user._id === user._id}
 				title={question.title}
 				description={question.description}
@@ -41,16 +45,19 @@ const Home = props => {
 	});
 	return (
 		<div className={classes.Home}>
+			<Header>Bounties</Header>
 			<Modal show={showModal} onClose={() => setShowModal(false)}>
 				<PostForm update={updateQuestions} close={() => setShowModal(false)} />
 			</Modal>
-			<div className={classes.Add}>
-				<span className={classes.AddText}>Have a question? </span>
-				<div onClick={() => setShowModal(true)} className={classes.CircularButton}>
-					<PlusIcon />
+			<div className={classes.QuestionsList}>
+				<div className={classes.Add}>
+					<span className={classes.AddText}>Have a question? </span>
+					<div onClick={() => setShowModal(true)} className={classes.CircularButton}>
+						<PlusIcon />
+					</div>
 				</div>
+				<div>{questionsList}</div>
 			</div>
-			<div className={classes.QuestionsList}>{questionsList}</div>
 		</div>
 	);
 };

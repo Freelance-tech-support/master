@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import classes from "./Layout.module.css";
 import { NavLink } from "react-router-dom";
 import HomeIcon from "../../assets/icons/HomeIcon";
+import MoneyIcon from "../../assets/icons/MoneyIcon";
+import LassoIcon from "../../assets/icons/LassoIcon";
 import Button from "../UI/Button/Button";
 import axios from "../../shared/axios-api";
 import { AuthContext } from "../../shared/AuthContext";
@@ -31,22 +33,22 @@ const Layout = props => {
 					<div>title</div>
 				</div>
 				<div className={classes.Links}>
-					<NavLink to="/home" activeStyle={activeLink} className={classes.Link}>
+					<NavLink to="/bounties" activeStyle={activeLink} className={classes.Link}>
 						<div className={classes.LinkContent}>
-							<HomeIcon />
-							<div>Home</div>
+							<MoneyIcon />
+							<div>Bounties</div>
 						</div>
 					</NavLink>
-					<NavLink to="/home1" activeStyle={activeLink} className={classes.Link}>
+					<NavLink to="/bountyhunters" activeStyle={activeLink} className={classes.Link}>
 						<div className={classes.LinkContent}>
 							<HomeIcon />
-							<div>Something</div>
+							<div>Bounty Hunters</div>
 						</div>
 					</NavLink>
-					<NavLink to="/home2" activeStyle={activeLink} className={classes.Link}>
+					<NavLink to="/hire" activeStyle={activeLink} className={classes.Link}>
 						<div className={classes.LinkContent}>
-							<HomeIcon />
-							<div>Something</div>
+							<LassoIcon />
+							<div>Hire Someone</div>
 						</div>
 					</NavLink>
 					<div className={classes.Logout}>

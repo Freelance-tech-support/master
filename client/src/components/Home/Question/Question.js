@@ -19,7 +19,7 @@ const Question = props => {
 		>
 			<div>
 				<div className={classes.Top}>
-					<div className={classes.User} style={{ color: props.isOnline ? blueLight : gray }}>
+					<div className={classes.User} style={{ color: props.contactable ? blueLight : gray }}>
 						<div
 							className={classes.Online}
 							style={{ borderColor: props.contactable ? blueLight : gray }}
@@ -34,7 +34,7 @@ const Question = props => {
 						{props.description}
 						{props.contactable && !props.own && (
 							<div className={classes.Contact}>
-								<Button color={blueDark}>
+								<Button color={blueDark} onClick={() => props.call(props.socketId)}>
 									Video Chat <span className={classes.Padding2}></span>{" "}
 									<VideoIcon fill={white} />
 								</Button>

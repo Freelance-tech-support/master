@@ -56,3 +56,13 @@ a:hover, a:focus {
 	justify-content: center;
 	align-content: center;
 }
+
+@keyframes slide {
+	0% {
+		opacity: 0;
+		top: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+}

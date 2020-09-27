@@ -27,6 +27,7 @@ const PostForm = props => {
 
 	return (
 		<div className={classes.PostForm}>
+			<div className={classes.Header}>Whats on your mind?</div>
 			<form onSubmit={handleSubmit(onSubmit)} className={classes.LoginForm}>
 				<TextInput
 					name="title"

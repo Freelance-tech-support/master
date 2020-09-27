@@ -35,7 +35,7 @@ const Modal = props => {
 			isOpen={props.show}
 			style={modalStyle}
 			onRequestClose={props.onClose}
-			shouldCloseOnOverlayClick
+			shouldCloseOnOverlayClick={!props.dontCloseOnOverlay}
 		>
 			{props.children}
 		</ReactModal>

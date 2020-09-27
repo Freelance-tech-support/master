@@ -24,9 +24,9 @@ const Register = props => {
 			.then(res => {
 				axios
 					.post("auth/login", data)
-					.then(res => {
-						setIsAuthenticated(true);
+					.then(res => {	
 						setUser(res.data.data);
+						setIsAuthenticated(true);
 					})
 					.catch(err => {
 						props.history.push("/login");
