@@ -14,7 +14,6 @@ const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const xss = require("xss-clean");
-const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 
 const auth = require("./routes/auth");
@@ -66,12 +65,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
-app.use(
-	cors({
-		origin: "http://localhost:3000",
-		credentials: true,
-	})
-);
+app.use(cors());
 
 //Authentication
 app.use(
@@ -99,7 +93,13 @@ app.use("/api/v1/auth", auth);
 app.use("/api/v1/question", question);
 app.use("/api/v1/users", userR);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
+
+app.use(express.urlencoded({extended: false}))
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('./client/build'))
+}
 
 server.listen(
 	PORT,

@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const asyncHandler = require("../middleware/async");
 const passport = require("passport");
-const ErrorResponse = require("../utils/errorResponse");
+const ErrorResponse = require("../utils/ErrorResponse");
 
 // @desc      Resgister user
 // @route     POST /api/v1/auth/register
@@ -54,7 +54,7 @@ exports.logout = asyncHandler((req, res, next) => {
 exports.status = asyncHandler(async (req, res, next) => {
 	const {isOnline} = req.body;
 	const update = {isOnline}
-	const user = await User.findByIdAndUpdate(req.user.id, update, {
+	const user = await User.findByIdAndUpdate(req.user._id, update, {
 		new: true,
 		runValidators: true,
 	});

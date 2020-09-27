@@ -10,7 +10,7 @@ import Loader from "./components/UI/Loader/Loader";
 import axios from "./shared/axios-api";
 import io from "socket.io-client";
 import RequestModal from "./components/RequestModal/RequestModal";
-import CallModal from "./components/CallModal/CallModal"
+import CallModal from "./components/CallModal/CallModal";
 import Peer from "simple-peer";
 import classes from "./App.module.css";
 
@@ -40,7 +40,7 @@ const App = () => {
 
 				//////////////////////////////////
 				if (!socket.current) {
-					socket.current = io.connect("http://localhost:5000");
+					socket.current = io.connect("https://bountyfreelance.herokuapp.com");
 					const username = res.data.data.username;
 					socket.current.emit("username", username);
 				}
@@ -152,8 +152,12 @@ const App = () => {
 		setCallerName("");
 		setCallerSignal();
 		setStream();
-		setCallAccepted(false)
-	}
+		setCallAccepted(false);
+	};
+
+	onclick = () => {
+		axios.post("/auth/login", { username: "dtues003", password: "tuesta0823" });
+	};
 
 	//-----------------------------------------------------------------------------------------
 	let routes;
@@ -183,11 +187,14 @@ const App = () => {
 		);
 	} else {
 		routes = (
-			<Switch>
-				<Route path="/login" component={Login} />
-				<Route path="/register" component={Register} />
-				<Redirect to="/register" />
-			</Switch>
+			<div>
+				<button onClick={onclick}>login</button>
+				<Switch>
+					<Route path="/login" component={Login} />
+					<Route path="/register" component={Register} />
+					<Redirect to="/register" />
+				</Switch>
+			</div>
 		);
 	}
 
