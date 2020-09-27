@@ -137,11 +137,6 @@ const App = () => {
 		peer.signal(callerSignal);
 	}
 
-	let PartnerVideo;
-	if (callAccepted) {
-		PartnerVideo = <div className={classes.Video} playsInline ref={partnerVideo} autoPlay />;
-	}
-
 	const closeRequestModal = () => {
 		setReceivingCall(false);
 		setCaller("");
@@ -172,8 +167,7 @@ const App = () => {
 					onClose={endCall}
 					username={user.username}
 					callerName={callerName}
-				>
-				</CallModal>
+				/>
 				<RequestModal
 					show={receivingCall}
 					accept={acceptCall}
@@ -197,6 +191,12 @@ const App = () => {
 	} else {
 		routes = (
 			<div>
+				<CallModal
+					show={true}
+					onClose={endCall}
+					username={user.username}
+					callerName={callerName}
+				/>
 				<Switch>
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
