@@ -24,7 +24,6 @@ const App = () => {
 	const [callAccepted, setCallAccepted] = useState(false);
 
 	const socket = useRef();
-	const userVideo = useRef();
 	const partnerVideo = useRef();
 
 	const [isLoading, setIsLoading] = useState(true);
@@ -138,6 +137,11 @@ const App = () => {
 		peer.signal(callerSignal);
 	}
 
+	let PartnerVideo;
+	if (callAccepted) {
+		PartnerVideo = <div className={classes.Video} playsInline ref={partnerVideo} autoPlay />;
+	}
+
 	const closeRequestModal = () => {
 		setReceivingCall(false);
 		setCaller("");
@@ -163,7 +167,14 @@ const App = () => {
 	if (isAuthenticated) {
 		routes = (
 			<HomeLayout socket={socket}>
-				<CallModal show={callAccepted} onClose={endCall} />
+				<CallModal
+					show={callAccepted}
+					onClose={endCall}
+					username={user.username}
+					callerName={callerName}
+				>
+					{PartnerVideo}
+				</CallModal>
 				<RequestModal
 					show={receivingCall}
 					accept={acceptCall}
@@ -187,6 +198,7 @@ const App = () => {
 	} else {
 		routes = (
 			<div>
+				<CallModal show={true} onClose={endCall} username={"gucc"} callerName={"Frank"} />
 				<Switch>
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />

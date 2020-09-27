@@ -4,9 +4,17 @@
 }
 
 .Modal {
-   width: 70rem;
+   width: 120rem;
 }
 
 .Label {
    text-align: center;
+}
+.Videos{
+   display: flex;
+   justify-content: space-between;
+}
+
+.Padding {
+   margin: 2rem;
 }
