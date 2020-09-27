@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-   baseURL: "https://bountyfreelance.herokuapp.com/api/v1/",
+   baseURL: "https://spacebounties.herokuapp.com/",
    withCredentials: true,
 })
 
