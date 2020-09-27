@@ -30,7 +30,7 @@ const Layout = props => {
 		<div className={classes.Layout}>
 			<nav className={classes.Nav}>
 				<div className={classes.Title}>
-					<div>title</div>
+					<div className={classes.Title}>Space Bounties</div>
 				</div>
 				<div className={classes.Links}>
 					<NavLink to="/bounties" activeStyle={activeLink} className={classes.Link}>

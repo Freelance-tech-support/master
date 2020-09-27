@@ -198,7 +198,6 @@ const App = () => {
 	} else {
 		routes = (
 			<div>
-				<CallModal show={true} onClose={endCall} username={"gucc"} callerName={"Frank"} />
 				<Switch>
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
