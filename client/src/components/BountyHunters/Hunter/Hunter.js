@@ -28,7 +28,7 @@ const Hunter = props => {
 			</div>
 			{props.hunter.isOnline && !props.isMe && (
 				<div className={classes.Buttons}>
-					<div className={classes.CircularButton} onClick={() => props.call(props.socketId)}>
+					<div className={classes.CircularButton} onClick={props.call}>
 						<VideoIcon fill={white} />
 					</div>
 					<div className={classes.CircularButton}>

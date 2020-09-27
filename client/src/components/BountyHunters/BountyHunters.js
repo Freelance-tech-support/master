@@ -13,7 +13,7 @@ const BountyHunters = props => {
 		});
 	}, []);
 	const huntersList = hunters.map(h => {
-		return <Hunter hunter={h} call={(id) => props.call(id)} socketId={props.users[h.username]} isMe={user.username === h.username}></Hunter>;
+		return <Hunter hunter={h} call={() => props.call(props.users[h.username])} isMe={user.username === h.username}></Hunter>;
 	});
 	return (
 		<div className={classes.BountyHunters}>
